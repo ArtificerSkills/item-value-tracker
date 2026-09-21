@@ -1,12 +1,10 @@
 generator client {
   provider = "prisma-client-js"
 }
-
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
-
 model Item {
   id                  String   @id @default(cuid())
   name                String
@@ -17,6 +15,18 @@ model Item {
   currentValue        Decimal? @db.Decimal(12, 2)
   depreciationModel   String   @default("market")
   annualRate          Decimal? @db.Decimal(6, 4)
+  source              String?
+  conditionBought     String?
+  conditionCurrent    String?
+  serialModel         String?
+  hoursUsed           Decimal? @db.Decimal(10, 1)
+  photoUrl            String?
+  receiptUrl          String?
+  targetSalePrice     Decimal? @db.Decimal(12, 2)
+  salePlatform        String?
+  saleFees            Decimal  @default(0) @db.Decimal(12, 2)
+  shippingCost        Decimal  @default(0) @db.Decimal(12, 2)
+  packagingCost       Decimal  @default(0) @db.Decimal(12, 2)
   notes               String?
   status              String   @default("owned")
   salePrice           Decimal? @db.Decimal(12, 2)

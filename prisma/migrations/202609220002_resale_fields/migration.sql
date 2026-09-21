@@ -1,0 +1,13 @@
+ALTER TABLE "Item"
+ADD COLUMN "source" TEXT,
+ADD COLUMN "conditionBought" TEXT,
+ADD COLUMN "conditionCurrent" TEXT,
+ADD COLUMN "serialModel" TEXT,
+ADD COLUMN "hoursUsed" DECIMAL(10,1),
+ADD COLUMN "photoUrl" TEXT,
+ADD COLUMN "receiptUrl" TEXT,
+ADD COLUMN "targetSalePrice" DECIMAL(12,2),
+ADD COLUMN "salePlatform" TEXT,
+ADD COLUMN "saleFees" DECIMAL(12,2) NOT NULL DEFAULT 0,
+ADD COLUMN "shippingCost" DECIMAL(12,2) NOT NULL DEFAULT 0,
+ADD COLUMN "packagingCost" DECIMAL(12,2) NOT NULL DEFAULT 0;
