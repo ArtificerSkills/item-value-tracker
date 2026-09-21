@@ -17,4 +17,4 @@ ENV NODE_ENV=production
 ENV NEXT_TELEMETRY_DISABLED=1
 COPY --from=builder /app ./
 EXPOSE 3000
-CMD ["node",".next/standalone/server.js"]
+CMD ["npm","run","start"]
