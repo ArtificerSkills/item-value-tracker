@@ -15,3 +15,4 @@ Personal web app for tracking what items cost, what extra money went into them, 
 This is a resale/value tracker, not accounting or tax depreciation software.
 
 Production deployment configured with Railway and PostgreSQL.
+
