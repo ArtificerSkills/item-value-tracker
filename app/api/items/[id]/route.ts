@@ -3,6 +3,13 @@ import { prisma } from "@/lib/prisma";
 
 const optionalNumber = (v: unknown) => v === "" || v == null ? null : Number(v);
 
+export async function GET(_: Request, { params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params;
+  const item = await prisma.item.findUnique({ where: { id } });
+  if (!item) return new NextResponse("Item not found.", { status: 404 });
+  return NextResponse.json(item);
+}
+
 export async function PUT(request: Request, { params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
   try {
@@ -41,6 +48,10 @@ export async function PUT(request: Request, { params }: { params: Promise<{ id: 
 }
 export async function DELETE(_: Request, { params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
-  await prisma.item.delete({ where: { id } });
-  return new NextResponse(null, { status: 204 });
+  try {
+    await prisma.item.delete({ where: { id } });
+    return new NextResponse(null, { status: 204 });
+  } catch {
+    return new NextResponse("Could not delete item.", { status: 400 });
+  }
 }
